@@ -1,0 +1,117 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-image: url('https://www.designi.com.br/images/preview/10534231.jpg'); 
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 100px;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 48px;
+    color: white;
+    padding-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    text-shadow: 0 0 5px rgb(0, 0, 0);
+}
+
+nav {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+nav a:hover {
+    color: #444444;
+}
+
+nav a {
+    text-shadow: 0 0 5px rgb(0, 0, 0);
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 15px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin-bottom: 40px;
+}
+
+.container__titulo {
+    font-size: 32px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.produtos__grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Ajusta o espaço entre as imagens */
+    gap: 20px;
+}
+
+.produto {
+    flex: 1 1 300px; /* Aumenta ou diminui o tamanho dos produtos */
+    text-align: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.produto:hover {
+    transform: translateY(-10px); /* Efeito ao passar o mouse */
+}
+
+.produto__imagem {
+    width: 150px;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem deformar */
+}
+
+.produto__nome {
+    font-size: 20px;
+    font-weight: 500;
+    margin-top: 10px;
+}
+
+.produto__descricao {
+    font-size: 14px;
+    color: #555;
+    margin-top: 5px;
+}
+
+footer.rodape {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
