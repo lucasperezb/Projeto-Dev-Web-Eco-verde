@@ -4,31 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoverde - home</title>
-    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="./src/styles/global.css">
+    <link rel="icon" href="./src/assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" type="image/png">
 </head>
+
 <body>
 
-<header>
-    <h1> Uma Fazenda Urbana.</h1>
+<header class="header__container">
+    <img  class="header__container__logo" src="src/assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" alt="logo">
     <nav>
-        <a href="index.html">Início</a>
-        <a href="form.html">Cadastro</a>
-        <a href="produtos.html">Nossos Produtos</a>
+        <a href="./src/components/Entrar/EntrarComp.html">Entrar</a>
+        <a href="form.html">Cadastra-se</a>
     </nav>
 </header>
 
-<main>
-    <div class="container">
+<section>
+    <div class="container__section__aboutus">
         <div class="container__texto">
             <h2 class="container__titulo">Quem Somos?</h2>
             <p class="container__titulo__texto">A Ecoverde é uma fazenda urbana dedicada à produção sustentável de alimentos no coração da cidade. Nosso objetivo é oferecer alimentos frescos, cultivados de forma ecológica, enquanto promovemos uma conexão mais profunda entre as pessoas e a natureza. Utilizamos técnicas modernas como hidroponia e agricultura vertical, garantindo uma produção eficiente e responsável. Além disso, trabalhamos para educar e conscientizar a comunidade sobre a importância da sustentabilidade na vida urbana. </p>
         </div>
-        <div class="conteudo__imagem">
-            <img class="conteudo__imagem" src="assets/fazendaurbana2-1-scaled.jpg" alt="Imagem da Fazenda Urbana">
-        </div>
     </div>
-
-    <div class="container">
+    <div class="conteudo__img">
+        <img class="conteudo__imagem" src="./src/assets/fazendaurbana2-1-scaled.jpg" alt="Imagem da Fazenda Urbana">
+    </div>
+</section>
+<section>
+    <div>
         <div class="container__texto">
             <h2 class="container__titulo">Por que uma Fazenda Urbana?</h2>
             <p class="container__titulo__paragrafo">As fazendas urbanas são fundamentais nas cidades modernas. Aqui estão os principais motivos para implementá-las:</p>
@@ -40,11 +42,13 @@
                 <li><strong>Fortalecimento da Comunidade:</strong> Funcionam como centros comunitários que incentivam a interação social e oportunidades de empreendedorismo local.</li>
             </ul>
         </div>
-            <div class="conteudo__imagem">
-                <img class="conteudo__imagem" src="assets/Begreen-20-08-2021-188-scaled-1.jpg" alt="Imagem da produção">
-            </div>  
     </div>
-</main>
+    <div class="conteudo__imagem__farm">
+        <img class="conteudo__imagem" src="./src/assets/Begreen-20-08-2021-188-scaled-1.jpg" alt="Imagem da produção">
+    </div>  
+
+</section>
+    
 
 <footer class="rodape">
     <p>© 2024 Ecoverde - Todos os direitos reservados.</p>
