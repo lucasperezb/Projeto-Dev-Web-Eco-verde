@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,600;1,600&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: rgb(250, 241, 224);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  height: 100px;
+  background-color: #5b892f;
+  color: white;
+  padding: 0 50px;
+  gap: 20px;
+}
+
+.header__container__logo {
+  border-radius: 50px;
+  height: 80px;
+}
+
+nav {
+  position: absolute;
+  top: 30px;
+  right: 50px;
+  display: flex;
+  gap: 40px;
+  font-size: 18px;
+}
+
+a {
+  padding: 10px 20px;
+  background-color: #80ba27;
+  border-radius: 50px;
+  font-weight: 650;
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  background-color: #444444;
+}
+
+section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 5%;
+  gap: 50px;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+section:nth-child(even) {
+  flex-direction: row-reverse;
+}
+
+.container__texto {
+  flex: 1;
+  max-width: 600px;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #333;
+  padding-bottom: 20px;
+}
+
+.conteudo__img {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.conteudo__imagem {
+  border-radius: 50px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.conteudo__imagem__farm {
+  border-radius: 50px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.rodape {
+  text-align: center;
+  padding: 50px;
+  background-color: #333;
+  color: white;
+}
+
+/* Responsivo (opcional) */
+@media (max-width: 768px) {
+  section {
+    flex-direction: column;
+  }
+
+  section:nth-child(even) {
+    flex-direction: column;
+  }
+
+  nav {
+    flex-direction: column;
+    top: auto;
+    right: auto;
+    position: static;
+    margin-top: 20px;
+    align-items: center;
+  }
+
+  .container__texto {
+    text-align: center;
+    font-size: 1.3rem;
+  }
+
+  .conteudo__imagem,
+  .conteudo__imagem__farm {
+    max-width: 90%;
+  }
+}

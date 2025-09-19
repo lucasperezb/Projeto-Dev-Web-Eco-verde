@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecoverde - Catálogo de Produtos</title>
+  <link rel="stylesheet" href="../styles/produtos.css">
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="icon" href="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" type="image/png">
+</head>
+<body>
+  <header class="header__container">
+    <h1 class="header__container__title">Loja</h1>
+    <nav class="header__nav">
+      <div class="usuario__menu">
+        <span id="usuarioNome">Olá, Usuário</span>
+        <a class="user" href="./user.html">
+          <img src="../assets/Sample_User_Icon.png" class="user__icon">
+        </a>
+      </div>
+      <div class="carrinho">
+        <button class="carrinhoBtn">🛒 Carrinho (<span id="carrinhoQuantidade">0</span>)</button>
+      </div>
+    </nav>
+  </header>
+    
+  <main>
+    <section class="container">
+      <div class="produtos__grid">
+        <div class="produto" data-nome="Bananas">
+          <img class="produto__imagem__img" src="../assets/pngtree-banana-yellow-banana-skewers-three-fruits-png-image_5944328.png" alt="Bananas">
+          <h3 class="produto__nome">Bananas</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Maçãs">
+          <img class="produto__imagem" src="../assets/maçã.jpg" alt="Maçãs">
+          <h3 class="produto__nome">Maçãs</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Morango">
+          <img class="produto__imagem__img" src="../assets/strawberry-transparent-background-free-png.webp" alt="Morangos">
+          <h3 class="produto__nome">Morango</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Limões">
+          <img class="produto__imagem" src="../assets/green-lemon-green-lemon-green-lemon-transparent-background-ai-generative-free-png.webp" alt="Limões">
+          <h3 class="produto__nome">Limões</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Laranjas">
+          <img class="produto__imagem" src="../assets/orange-fruit-orange-on-transparent-background-free-png.webp" alt="Laranjas">
+          <h3 class="produto__nome">Laranjas</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Alface">
+          <img class="produto__imagem" src="../assets/pngtree-side-view-of-lettuce-png-image_11606878.png" alt="Alface">
+          <h3 class="produto__nome">Alface</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Espinafre">
+          <img class="produto__imagem" src="../assets/espinafre.jpg" alt="Espinafre">
+          <h3 class="produto__nome">Espinafre</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Rúcula">
+          <img class="produto__imagem" src="../assets/rucula.jpg" alt="Rúcula">
+          <h3 class="produto__nome">Rúcula</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Couve">
+          <img class="produto__imagem" src="../assets/couve.png" alt="Couve">
+          <h3 class="produto__nome">Couve</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+        <div class="produto" data-nome="Brócolis">
+          <img class="produto__imagem" src="../assets/brocolis.webp" alt="Brócolis">
+          <h3 class="produto__nome">Brócolis</h3>
+          <p>Quantidade em estoque:<strong></strong></p>
+          <button class="adicionarCarrinho">Adicionar ao Carrinho</button>
+        </div>
+      </div>
+    </section>
+    <!-- Modal do carrinho -->
+    <div class="modalCarrinho">
+      <div class="modalContainer">
+        <h2>Seu Carrinho</h2>
+        <ul class="listaCarrinho"></ul>
+        <button class="btnFinalizarCompra">Finalizar Compra</button>
+        <button class="btnFecharModal">X</button>
+      </div>
+    </div>
+
+  </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    async function carregarEstoque() {
+      try {
+        const response = await axios.get('http://localhost:3000/products');
+        const estoque = response.data;
+
+        document.querySelectorAll('.produto').forEach(produtoDiv => {
+          const nomeProduto = produtoDiv.dataset.nome;
+          const quantidadeStrong = produtoDiv.querySelector('p strong');
+          const produto = estoque.find(p => p.nome === nomeProduto);
+
+          if (quantidadeStrong) {
+            if (!produto || produto.quantidade <= 0) {
+              quantidadeStrong.textContent = 'Esgotado';
+            } else {
+              quantidadeStrong.textContent = produto.quantidade;
+            }
+          }
+        });
+      } catch (error) {
+        console.error('Erro ao carregar estoque:', error);
+      }
+    }
+
+    window.onload = carregarEstoque();
+
+    // Modal
+    // Seletores do modal e carrinho
+    const carrinhoBtn = document.querySelector('.carrinhoBtn');
+    const modalCarrinho = document.querySelector('.modalCarrinho');
+    const btnFecharModal = document.querySelector('.btnFecharModal');
+    const listaCarrinho = document.querySelector('.listaCarrinho');
+    const carrinhoQuantidade = document.getElementById('carrinhoQuantidade');
+    const btnFinalizarCompra = document.querySelector('.btnFinalizarCompra');
+
+    let carrinho = [];
+
+    // Atualiza visual do carrinho no DOM
+    function atualizarCarrinhoNoDOM() {
+      listaCarrinho.innerHTML = '';
+      let totalItens = 0;
+
+      carrinho.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.nome} - Quantidade: ${item.quantidade}`;
+        listaCarrinho.appendChild(li);
+        totalItens += item.quantidade;
+      });
+
+      carrinhoQuantidade.textContent = totalItens;
+    }
+
+    // Adiciona produto ao carrinho
+    function adicionarAoCarrinho(nome, quantidadeComprar) {
+      const produtoNoCarrinho = carrinho.find(item => item.nome === nome);
+      if (produtoNoCarrinho) {
+        produtoNoCarrinho.quantidade += quantidadeComprar;
+      } else {
+        carrinho.push({ nome, quantidade: quantidadeComprar });
+      }
+      atualizarCarrinhoNoDOM();
+    }
+
+    // Eventos dos botões "Adicionar ao carrinho"
+    document.querySelectorAll('.adicionarCarrinho').forEach(botao => {
+      botao.addEventListener('click', () => {
+        const produtoDiv = botao.closest('.produto');
+        const nomeProduto = produtoDiv.dataset.nome;
+        const quantidadeEstoque = Number(produtoDiv.querySelector('p strong').textContent);
+
+        if (quantidadeEstoque === 0) {
+          alert(`Produto ${nomeProduto} está sem estoque!`);
+          return;
+        }
+
+        // Adiciona 1 unidade ao carrinho
+        adicionarAoCarrinho(nomeProduto, 1);
+
+        alert(`Produto ${nomeProduto} adicionado ao carrinho! Quantidade: 1`);
+      });
+    });
+
+
+    // Botão finalizar compra
+    btnFinalizarCompra.addEventListener('click', async () => {
+      try {
+        for (const item of carrinho) {
+          const produtoDiv = document.querySelector(`.produto[data-nome="${item.nome}"]`);
+          const quantidadeStrong = produtoDiv.querySelector('p strong');
+          const quantidadeAtual = parseInt(quantidadeStrong.textContent);
+
+          const novaQuantidade = quantidadeAtual - item.quantidade;
+          if (novaQuantidade < 0) {
+            alert(`Estoque insuficiente para ${item.nome}.`);
+            return;
+          }
+
+          // Atualiza backend
+          await axios.post('http://localhost:3000/products', {
+            nome: item.nome,
+            quantidade: novaQuantidade
+          });
+
+          // Atualiza frontend
+          quantidadeStrong.textContent = novaQuantidade;
+        }
+
+        alert('Compra finalizada com sucesso!');
+
+        // Limpa carrinho e atualiza UI
+        carrinho = [];
+        atualizarCarrinhoNoDOM();
+
+        // Fecha modal
+        modalCarrinho.style.display = 'none';
+      } catch (error) {
+        console.error('Erro ao finalizar compra:', error);
+        alert('Erro ao finalizar compra, tente novamente.');
+      }
+    });
+
+    // Abrir modal carrinho
+    carrinhoBtn.addEventListener('click', () => {
+      modalCarrinho.style.display = 'flex';
+      atualizarCarrinhoNoDOM();
+    });
+
+    // Fechar modal carrinho
+    btnFecharModal.addEventListener('click', () => {
+      modalCarrinho.style.display = 'none';
+    });
+
+    // Fechar modal clicando fora
+    modalCarrinho.addEventListener('click', (event) => {
+      if (event.target === modalCarrinho) {
+        modalCarrinho.style.display = 'none';
+      }
+    });
+  </script>
+
+  <script>
+    window.onload = async () => {
+      const usuarioJSON = localStorage.getItem('usuario');
+      if (!usuarioJSON) {
+        alert('Usuário não logado');
+        window.location.href = './entrar.html';
+        return;
+      }
+
+      const usuario = JSON.parse(usuarioJSON);
+      if (!usuario.email) {
+        alert('Usuário não logado');
+        window.location.href = './entrar.html';
+        return;
+      }
+
+      const emailEncoded = encodeURIComponent(usuario.email);
+
+      try {
+        const response = await axios.get(`http://localhost:3000/usuarios/buscarnome/${usuario.email}`);
+        const nome = response.data;
+
+        const span = document.getElementById('usuarioNome');
+        if (nome && span) {
+          span.textContent = span.textContent.replace('Usuário', nome);
+        }
+      } catch (erro) {
+        console.error('Erro ao buscar nome do usuário:', erro);
+      }
+    };
+  </script>
+  <footer class="rodape">
+    <p>© 2024 Ecoverde - Todos os direitos reservados.</p>
+  </footer>
+</body>
+</html>

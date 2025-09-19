@@ -1,0 +1,66 @@
+.header__container__logo {
+  margin: 50px;
+}
+
+.container__info {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+.container__info h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.container__info p {
+  font-size: 16px;
+  margin: 10px 0;
+  color: #555;
+}
+
+.container__info strong {
+  color: #111;
+}
+
+.buttons {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+}
+
+.edit-btn,
+.delete-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #5b892f;
+  color: white;
+}
+
+.edit-btn:hover {
+  background-color: #4a7326;
+}
+
+.delete-btn {
+  background-color: #e04f24;
+  color: white;
+}
+
+.delete-btn:hover {
+  background-color: #c13d18;
+}
+

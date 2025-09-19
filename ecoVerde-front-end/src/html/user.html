@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informacoes do Usuario</title>
+  <link rel="stylesheet" href="../styles/global.css">
+  <link rel="stylesheet" href="../styles/user.css">
+  <link rel="icon" href="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <header class="header__container">
+    <img class="header__container__logo" src="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" alt="logo">
+    <h1 class="header__container__title">Minha Conta</h1>
+    <nav>
+      <a href="./produtos.html" class="header-btn">← Voltar</a>
+      <a href="./entrar.html" class="header-btn">Sair</a>
+    </nav>
+  </header>
+    
+  <main class="container__info">
+    <h2>Informações do Usuário</h2>
+    <p><strong>Nome:</strong> </p>
+    <p><strong>Email:</strong> </p>
+    <p><strong>Endereço:</strong> </p>
+    <p><strong>Telefone:</strong> </p>
+
+    <div class="buttons">
+      <button class="edit-btn">Editar Informações</button>
+      <button class="delete-btn">Deletar Conta</button>
+    </div>
+  </main>
+  
+<script>
+  document.addEventListener('DOMContentLoaded', async () => {
+    const usuario = JSON.parse(localStorage.getItem('usuario'));
+    const emailEncoded = encodeURIComponent(usuario.email);
+    if (!usuario || !usuario.email) {
+      alert('Usuário não logado');
+      window.location.href = './entrar.html';
+      return;
+    }
+
+    try {
+      const response = await axios.get(`http://localhost:3000/usuarios/${emailEncoded}`);
+      const data = response.data;
+
+      document.querySelector('p:nth-of-type(1)').innerHTML = `<strong>Nome:</strong> ${data.nome}`;
+      document.querySelector('p:nth-of-type(2)').innerHTML = `<strong>Email:</strong> ${data.email}`;
+      document.querySelector('p:nth-of-type(3)').innerHTML = `<strong>Endereço:</strong> ${data.endereco ?? 'Não informado'}`;
+      document.querySelector('p:nth-of-type(4)').innerHTML = `<strong>Telefone:</strong> ${data.telefone ?? 'Não informado'}`;
+
+      // Botão Editar
+      document.querySelector('.edit-btn').addEventListener('click', async () => {
+        const nome = prompt('Digite o novo nome:', data.nome);
+        const endereco = prompt('Digite o novo endereço:', data.endereco ?? '');
+        const telefone = prompt('Digite o novo telefone:', data.telefone ?? '');
+
+        if (!nome) return alert('Nome é obrigatório');
+
+        try {
+          const response = axios.put(`http://localhost:3000/usuarios/${usuario.email}`, {
+            nome, endereco, telefone
+          });
+          localStorage.setItem('usuarioNome', nome);
+          alert('Informações atualizadas com sucesso!');
+          location.reload();
+        } catch (err) {
+          console.error(err);
+          alert('Erro ao atualizar informações.');
+        }
+      });
+
+      // Botão Deletar
+      document.querySelector('.delete-btn').addEventListener('click', async () => {
+        const confirmar = confirm('Tem certeza que deseja deletar sua conta? Essa ação não poderá ser desfeita.');
+
+        if (!confirmar) return;
+
+        try {
+          await axios.delete(`http://localhost:3000/usuarios/${usuario.email}`);
+          localStorage.removeItem('usuario');
+          alert('Conta deletada com sucesso!');
+          window.location.href = './entrar.html';
+        } catch (err) {
+          console.error(err);
+          alert('Erro ao deletar a conta.');
+        }
+      });
+
+    } catch (err) {
+      console.error('Erro ao buscar dados do usuário:', err);
+      alert('Erro ao carregar informações do usuário.');
+    }
+  });
+</script>
+
+</body>
+</html>

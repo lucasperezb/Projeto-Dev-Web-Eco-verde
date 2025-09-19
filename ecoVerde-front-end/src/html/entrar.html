@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoVerde-Entrar</title>
+    <link rel="stylesheet" href="../styles/global.css">
+    <link rel="stylesheet" href="../styles/entrar.css">
+    <link rel="icon" href="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" type="image/png">
+		<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+	<header class="header__container">
+		<img  class="header__container__logo" src="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" alt="logo">
+		<nav>
+			<a class="header__container__nav" href="./entrar.html"">Entrar</a>
+			<a class="header__container__nav" href="./form.html">Cadastra-se</a>
+		</nav>
+	</header>
+	<main>
+		<div class="main__container__form">
+			<form class="form" action="#" method="post">
+				<div class="form_grupo">
+					<label for="e-mail" class="form_label">Email</label>
+					<input type="email" name="email" class="form_input" id="email" placeholder="seuemail@email.com" required>
+				</div>
+				<div class="form_grupo">
+					<label for="senha" class="form_label">Senha</label>
+					<input type="password" name="senha" class="form_input" id="senha" placeholder="Senha" required>
+				</div>
+				<div class="submit">
+					<input type="hidden" name="acao" value="enviar">
+					<button type="submit" id="buttonEnter" name="Submit" class="submit_btn">Entrar</button>
+				</div>
+				<script>
+					const form = document.querySelector('form');
+
+					form.addEventListener('submit', async (event) => {
+						event.preventDefault();
+
+						const usuario = {
+							email: form.email.value,
+							senha: form.senha.value,
+						};
+
+						try {
+							const response = await axios.post('http://localhost:3000/usuarios/login', usuario, {
+								headers: { 'Content-Type': 'application/json' }
+							})
+							console.log('Resposta do backend:', response.data);
+							if (response.data.message === 'Login realizado com sucesso') {
+								localStorage.setItem('usuario', JSON.stringify({
+								nome: response.data.nome,
+								email: usuario.email
+							}));
+								
+								window.location.href = './produtos.html';
+							}
+
+							else {
+								alert(response.data.message);
+							}
+						} catch (error) {
+							alert('Erro ao tentar entrar: ' + (error.response?.data?.message || error.message));
+						}
+					});
+				</script>
+			</form>
+			<div class="container__img">
+				<img class="img" src="../assets/estufa-begreen-boulevard-min.webp">
+			</div>
+		</div>
+	</main>
+	<footer class="rodape">
+		<p>© 2024 Ecoverde - Todos os direitos reservados.</p>
+	</footer>
+</body>
+</html>
