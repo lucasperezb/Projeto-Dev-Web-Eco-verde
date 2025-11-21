@@ -1,86 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <title>Controle de Estoque</title>
-</head>
-<body>
-  <header class="header__container">
-    <h1>Controle de Estoque</h1>
-  </header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle de Estoque</title>
+    <link rel="stylesheet" href="../styles/global.css" />
+    <link rel="stylesheet" href="../styles/estoque.css" />
+  </head>
+  <body>
+    <header class="header__container">
+      <h1>Controle de Estoque</h1>
+    </header>
 
-  <main class="container">
-    <form id="formEstoque" class="estoque-form">
-       <select id="produtoSelect" required>
-        <option value="" disabled selected>Selecione um produto</option>
-        <option value="Bananas">Bananas</option>
-        <option value="Maçãs">Maçãs</option>
-        <option value="Morango">Morango</option>
-        <option value="Limões">Limões</option>
-        <option value="Laranjas">Laranjas</option>
-        <option value="Alface">Alface</option>
-        <option value="Espinafre">Espinafre</option>
-        <option value="Rúcula">Rúcula</option>
-        <option value="Couve">Couve</option>
-        <option value="Brócolis">Brócolis</option>
-      </select>
-      <input type="number" placeholder="Quantidade" id="quantidadeProduto" required>
-      <button type="submit">Adicionar/Atualizar</button>
-      <button id="limpar">Limpar</button>
-    </form>
+    <main class="container">
+      <form id="formEstoque" class="estoque-form">
+        <select id="produtoSelect" required>
+          <option value="" disabled selected>Selecione um produto</option>
+          <option value="Bananas">Bananas</option>
+          <option value="Maçãs">Maçãs</option>
+          <option value="Morango">Morango</option>
+          <option value="Limões">Limões</option>
+          <option value="Laranjas">Laranjas</option>
+          <option value="Alface">Alface</option>
+          <option value="Espinafre">Espinafre</option>
+          <option value="Rúcula">Rúcula</option>
+          <option value="Couve">Couve</option>
+          <option value="Brócolis">Brócolis</option>
+        </select>
+        <input
+          type="number"
+          placeholder="Quantidade"
+          id="quantidadeProduto"
+          required
+        />
+        <button type="submit">Adicionar/Atualizar</button>
+        <button id="limpar">Limpar</button>
+      </form>
 
-    <h2>Produtos em Estoque</h2>
-    <ul id="listaEstoque" class="estoque-lista"></ul>
-  </main>
+      <h2>Produtos em Estoque</h2>
+      <ul id="listaEstoque" class="estoque-lista"></ul>
+    </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const form = document.getElementById("formEstoque");
-      const listaEstoque = document.getElementById("listaEstoque");
-      const btnLimpar = document.getElementById("limpar");
-
-      async function atualizarLista() {
-        try {
-          const res = await axios.get('http://localhost:3000/products');
-          listaEstoque.innerHTML = "";
-          res.data.forEach(prod => {
-            const li = document.createElement("li");
-            li.textContent = `${prod.nome}: ${prod.quantidade} unidades`;
-            listaEstoque.appendChild(li);
-          });
-        } catch (err) {
-          console.error("Erro ao buscar estoque:", err);
-        }
-      }
-
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const nome = document.getElementById("produtoSelect").value;
-        const quantidade = parseInt(document.getElementById("quantidadeProduto").value);
-
-        try {
-          await axios.post('http://localhost:3000/products', { nome, quantidade });
-          await atualizarLista();
-          form.reset();
-        } catch (err) {
-          console.error("Erro ao salvar estoque:", err);
-        }
-      });
-
-      btnLimpar.addEventListener("click", async () => {
-        if (!confirm("Tem certeza que deseja limpar todo o estoque?")) return;
-        try {
-          await axios.delete('http://localhost:3000/products');
-          await atualizarLista();
-        } catch (err) {
-          console.error("Erro ao limpar estoque:", err);
-        }
-      });
-
-      atualizarLista();
-    });
-  </script>
-</body>
+    <script src="../scripts/estoque.js"></script>
+  </body>
 </html>

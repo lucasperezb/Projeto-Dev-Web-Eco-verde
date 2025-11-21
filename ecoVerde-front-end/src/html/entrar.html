@@ -11,7 +11,13 @@
 </head>
 <body>
 	<header class="header__container">
-		<img  class="header__container__logo" src="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png" alt="logo">
+		<a class="a__landpage" href="./index.html">
+        <img
+          class="header__container__logo"
+          src="../assets/ChatGPT Image 1 de abr. de 2025, 22_14_11.png"
+          alt="logo"
+        />
+      </a>
 		<nav>
 			<a class="header__container__nav" href="./entrar.html"">Entrar</a>
 			<a class="header__container__nav" href="./form.html">Cadastra-se</a>
@@ -32,39 +38,7 @@
 					<input type="hidden" name="acao" value="enviar">
 					<button type="submit" id="buttonEnter" name="Submit" class="submit_btn">Entrar</button>
 				</div>
-				<script>
-					const form = document.querySelector('form');
-
-					form.addEventListener('submit', async (event) => {
-						event.preventDefault();
-
-						const usuario = {
-							email: form.email.value,
-							senha: form.senha.value,
-						};
-
-						try {
-							const response = await axios.post('http://localhost:3000/usuarios/login', usuario, {
-								headers: { 'Content-Type': 'application/json' }
-							})
-							console.log('Resposta do backend:', response.data);
-							if (response.data.message === 'Login realizado com sucesso') {
-								localStorage.setItem('usuario', JSON.stringify({
-								nome: response.data.nome,
-								email: usuario.email
-							}));
-								
-								window.location.href = './produtos.html';
-							}
-
-							else {
-								alert(response.data.message);
-							}
-						} catch (error) {
-							alert('Erro ao tentar entrar: ' + (error.response?.data?.message || error.message));
-						}
-					});
-				</script>
+				<script src="../scripts/entrar.js"></script>
 			</form>
 			<div class="container__img">
 				<img class="img" src="../assets/estufa-begreen-boulevard-min.webp">

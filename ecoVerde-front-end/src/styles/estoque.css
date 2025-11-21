@@ -1,0 +1,107 @@
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f7f6; /* Um verde claro/cinza suave para o fundo */
+  color: #333;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.header__container {
+  background-color: #5cb85c; /* Verde mais vibrante para o cabeçalho */
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header__container h1 {
+  margin: 0;
+  font-size: 2.2rem;
+}
+
+.container {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  color: #4a4a4a;
+  margin-top: 2rem;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
+}
+
+/* Estilos do Formulário */
+.estoque-form {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens se ajustem em linhas menores */
+  gap: 1rem; /* Espaçamento entre os elementos do formulário */
+  margin-bottom: 2rem;
+  align-items: flex-end; /* Alinha os itens pela base */
+}
+
+.estoque-form select,
+.estoque-form input[type="number"] {
+  flex: 1; /* Faz com que ocupem o espaço disponível */
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-width: 150px; /* Garante um tamanho mínimo */
+}
+
+.estoque-form button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  white-space: nowrap; /* Evita que o texto do botão quebre */
+}
+
+.estoque-form button[type="submit"] {
+  background-color: #5cb85c; /* Verde primário */
+  color: white;
+}
+
+.estoque-form button[type="submit"]:hover {
+  background-color: #4cae4c; /* Verde um pouco mais escuro */
+}
+
+.estoque-form #limpar {
+  background-color: #f0ad4e; /* Laranja para o botão Limpar */
+  color: white;
+}
+
+.estoque-form #limpar:hover {
+  background-color: #ec971f; /* Laranja um pouco mais escuro */
+}
+
+/* Estilos da Lista de Estoque */
+.estoque-lista {
+  list-style: none;
+  padding: 0;
+}
+
+.estoque-lista li {
+  background-color: #e9f5e9; /* Fundo verde muito claro para os itens */
+  border: 1px solid #d4edda;
+  margin-bottom: 0.7rem;
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+}
+
+.estoque-lista li span {
+  font-weight: bold;
+  color: #337a33; /* Um verde mais escuro para o texto principal */
+}
